@@ -1,0 +1,267 @@
+/* =========================================
+   Variáveis de cores
+========================================= */
+:root {
+  --color-fire: #f08030;
+  --color-water: #6890f0;
+  --color-grass: #78c850;
+  --color-electric: #f8d030;
+  --color-psychic: #f85888;
+  --color-ice: #98d8d8;
+  --color-dragon: #7038f8;
+  --color-dark: #705848;
+  --color-fairy: #ee99ac;
+  --color-normal: #a8a878;
+  --color-fighting: #c03028;
+  --color-flying: #a890f0;
+  --color-poison: #a040a0;
+  --color-ground: #e0c068;
+  --color-rock: #b8a038;
+  --color-bug: #a8b820;
+  --color-ghost: #705898;
+  --color-steel: #b8b8d0;
+
+  --text-dark: #333;
+  --text-light: #fff;
+  --card-bg: #f8f8f8;
+  --modal-bg: #faf3d8;
+  --atk-bg: #fff;
+}
+
+/* =========================================
+   Layout principal
+========================================= */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* =========================================
+   Grid de Pokémons
+========================================= */
+.deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* =========================================
+   Cartas lista
+========================================= */
+.poke-card {
+  width: 230px;
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.poke-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.poke-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 6px 10px;
+  color: var(--text-light);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.poke-name { font-size: 18px; text-transform: capitalize; }
+.poke-hp { font-size: 16px; }
+
+.poke-img { display: block; margin: 0 auto; width: 140px; }
+
+.poke-type-label {
+  margin-top: 10px;
+  padding: 5px;
+  background: #eee;
+  border-radius: 8px;
+  font-size: 14px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+/* ----------------------------------------
+   Ataques da lista
+---------------------------------------- */
+.poke-moves { margin-top: 12px; }
+
+.poke-move {
+  background: var(--atk-bg);
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.poke-move h4 { margin: 0; font-size: 15px; text-transform: capitalize; }
+.move-desc { font-size: 12px; color: var(--text-dark); margin-top: 4px; }
+
+/* ----------------------------------------
+   Cores por tipo
+---------------------------------------- */
+.poke-header.fire { background: var(--color-fire); }
+.poke-header.water { background: var(--color-water); }
+.poke-header.grass { background: var(--color-grass); }
+.poke-header.electric { background: var(--color-electric); color: var(--text-dark); }
+.poke-header.ice { background: var(--color-ice); color: var(--text-dark); }
+.poke-header.psychic { background: var(--color-psychic); }
+.poke-header.dragon { background: var(--color-dragon); }
+.poke-header.dark { background: var(--color-dark); }
+.poke-header.fairy { background: var(--color-fairy); color: var(--text-dark); }
+.poke-header.normal { background: var(--color-normal); color: var(--text-dark); }
+.poke-header.fighting { background: var(--color-fighting); }
+.poke-header.flying { background: var(--color-flying); }
+.poke-header.poison { background: var(--color-poison); }
+.poke-header.ground { background: var(--color-ground); color: var(--text-dark); }
+.poke-header.rock { background: var(--color-rock); }
+.poke-header.bug { background: var(--color-bug); color: var(--text-dark); }
+.poke-header.ghost { background: var(--color-ghost); }
+.poke-header.steel { background: var(--color-steel); color: var(--text-dark); }
+
+/* =========================================
+   Modal TCG
+========================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.poke-tcg-card {
+  width: 340px;
+  background: var(--modal-bg);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  position: relative;
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Header modal TCG */
+.tcg-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 6px 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: var(--text-light);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.tcg-header.fire { background: var(--color-fire); }
+.tcg-header.water { background: var(--color-water); }
+.tcg-header.grass { background: var(--color-grass); }
+.tcg-header.electric { background: var(--color-electric); color: var(--text-dark); }
+.tcg-header.ice { background: var(--color-ice); color: var(--text-dark); }
+.tcg-header.psychic { background: var(--color-psychic); }
+.tcg-header.dragon { background: var(--color-dragon); }
+.tcg-header.dark { background: var(--color-dark); }
+.tcg-header.fairy { background: var(--color-fairy); color: var(--text-dark); }
+.tcg-header.normal { background: var(--color-normal); color: var(--text-dark); }
+.tcg-header.fighting { background: var(--color-fighting); }
+.tcg-header.flying { background: var(--color-flying); }
+.tcg-header.poison { background: var(--color-poison); }
+.tcg-header.ground { background: var(--color-ground); color: var(--text-dark); }
+.tcg-header.rock { background: var(--color-rock); }
+.tcg-header.bug { background: var(--color-bug); color: var(--text-dark); }
+.tcg-header.ghost { background: var(--color-ghost); }
+.tcg-header.steel { background: var(--color-steel); color: var(--text-dark); }
+
+/* Imagem modal */
+.tcg-img { width: 240px; display: block; margin: 10px auto; border-radius: 12px; }
+
+/* Tipo */
+.tcg-type-box {
+  background: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+/* Ataques */
+.tcg-attacks h3 { font-size: 18px; margin-bottom: 6px; }
+
+.tcg-attack {
+  background: var(--atk-bg);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+}
+
+.atk-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.atk-desc { margin-top: 4px; font-size: 14px; color: var(--text-dark); }
+
+/* Info base */
+.tcg-info { margin-top: 12px; font-size: 14px; }
+
+/* Carta estilo TCG lista */
+.tcg-card {
+  width: 220px;
+  background: linear-gradient(180deg, #f9f4d8, #f5e6ad);
+  border: 6px solid #d1b24a;
+  border-radius: 16px;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tcg-card:hover { transform: scale(1.05); }
+
+.tcg-name { text-transform: capitalize; }
+.tcg-hp { color: red !important; }
+.tcg-art { width: 100%; border-radius: 12px; margin-top: 8px; }
+.tcg-type-bar {
+  margin-top: 8px;
+  background: #ffe066;
+  text-align: center;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
